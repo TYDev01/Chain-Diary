@@ -1,0 +1,5 @@
+fastapi
+python-multipart
+Pillow
+uvicorn[standard]
+python-dotenv
