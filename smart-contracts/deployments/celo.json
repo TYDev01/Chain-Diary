@@ -1,0 +1,8 @@
+{
+  "network": "celo",
+  "contractAddress": "0x6C2260ee2B93d95D2f4041A0FB469fa6Fd507c9A",
+  "deployer": "0x7aA100D91b4BcF5EFEd557452d33E4956f6E70aA",
+  "deploymentTime": "2025-11-21T12:24:05.207Z",
+  "transactionHash": "0x241817403b85d6316d30187ee4a91f7155b85da3958677129eaa52147390b0f0",
+  "blockNumber": 51827079
+}
