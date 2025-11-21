@@ -1,0 +1,33 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: CeloDiary
+    network: celo-alfajores
+    source:
+      address: "0x3134D4b4b3608f460da1A59cd1dF2f5da38C045c"
+      abi: CeloDiary
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - DiaryVolume
+        - DiaryEntry
+        - Reward
+        - PremiumStatusChange
+        - GlobalStats
+      abis:
+        - name: CeloDiary
+          file: ./abis/CeloDiary.json
+      eventHandlers:
+        - event: DiaryUpdated(indexed address,string,uint256)
+          handler: handleDiaryUpdated
+        - event: RewardIssued(indexed address,uint256)
+          handler: handleRewardIssued
+        - event: PremiumStatusChanged(indexed address,bool)
+          handler: handlePremiumStatusChanged
+      file: ./src/mapping.ts

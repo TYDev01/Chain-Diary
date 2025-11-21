@@ -1,0 +1,73 @@
+type User @entity {
+  id: ID! # User address
+  isPremium: Boolean!
+  lastRewardTimestamp: BigInt!
+  freeImageUploadsUsed: Int!
+  totalVolumes: Int!
+  totalEntries: Int!
+  streak: Int!
+  createdAt: BigInt!
+  updatedAt: BigInt!
+  
+  # Relationships
+  volumes: [DiaryVolume!]! @derivedFrom(field: "user")
+  entries: [DiaryEntry!]! @derivedFrom(field: "user")
+  rewards: [Reward!]! @derivedFrom(field: "user")
+}
+
+type DiaryVolume @entity {
+  id: ID! # timestamp
+  user: User!
+  cid: String!
+  timestamp: BigInt!
+  entryCount: Int!
+  totalSize: BigInt!
+  isCurrent: Boolean!
+  
+  # Relationships
+  entries: [DiaryEntry!]! @derivedFrom(field: "volume")
+}
+
+type DiaryEntry @entity {
+  id: ID! # volumeId-entryIndex
+  volume: DiaryVolume!
+  user: User!
+  text: String!
+  imageCIDs: [String!]!
+  timestamp: BigInt!
+  entryIndex: Int!
+  dayOfYear: Int! # For streak calculation
+}
+
+type Reward @entity {
+  id: ID! # txHash-logIndex
+  user: User!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+}
+
+type PremiumStatusChange @entity {
+  id: ID! # txHash-logIndex
+  user: User!
+  isPremium: Boolean!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+}
+
+type ImageUpload @entity {
+  id: ID! # txHash-logIndex
+  user: User!
+  count: Int!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+}
+
+type GlobalStats @entity {
+  id: ID! # "global"
+  totalUsers: Int!
+  totalVolumes: Int!
+  totalEntries: Int!
+  totalRewards: BigInt!
+  premiumUsers: Int!
+  updatedAt: BigInt!
+}

@@ -17,12 +17,13 @@ const config: HardhatUserConfig = {
       chainId: 31337,
     },
     alfajores: {
-      url: process.env.ALFAJORES_RPC_URL || "https://alfajores-forno.celo-testnet.org",
+      url: process.env.ALFAJORES_RPC_URL || "https://forno.celo-sepolia.celo-testnet.org",
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
-      chainId: 44787,
+      chainId: 11142220,
+      timeout: 60000,
     },
     celo: {
-      url: process.env.CELO_RPC_URL || "https://forno.celo.org",
+      url: process.env.CELO_RPC_URL || "https://celo.drpc.org",
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       chainId: 42220,
     },
